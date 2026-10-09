@@ -89,7 +89,7 @@ $("#BooksFilterForm").submit(function (e) {
     type: "POST",
     data: dataForm,
     success: function (response) {
-      console.log(response);
+      console.log(response.data);
       let books = response.data.data,
         currentPage = response.data.currentPage,
         total = response.data.total;
@@ -190,15 +190,15 @@ function preparePagination(data)
 
     for (let i = 1; i <= pagesNumber; i++) {
       let isActive = (data.currentPage == i) ? 'active' : '';
-      prepareLi += `<li class='page-item'><a class='page-link ${isActive}' onclick="changePage(${i}) data-page=${i}'>${i}</a></li>`;
+      prepareLi += `<li class='page-item'><a class='page-link ${isActive}' onclick="changePage(${i})" data-page='${i}'>${i}</a></li>`;
     };
 
     return ` 
   <nav aria-label='Page navigation example'>
     <ul class='pagination'>
-      <li class='page-item'><a class='page-link ${isprevPageDisabled}' onclick="changePage(${prevPage})" data-page=${prevPage}'>Previous</a></li>
+      <li class='page-item'><a class='page-link ${isprevPageDisabled}' onclick="changePage(${prevPage})" data-page='${prevPage}'>Previous</a></li>
       ${prepareLi}
-      <li class='page-item'><a class='page-link ${isNextPageDisabled}' onclick="changePage(${nextPage}) data-page='${nextPage}'>Next</a></li>
+      <li class='page-item'><a class='page-link ${isNextPageDisabled}' onclick="changePage(${nextPage})" data-page='${nextPage}'>Next</a></li>
     </ul>
   </nav>
   `;
@@ -207,6 +207,7 @@ function preparePagination(data)
 }
 
 function changePage(page){
+  console.log(page)
   $("#BooksFilterForm #ChangePage").val(page);
-  $("#BooksFilterForm").trigger('submit');
+  $("#BooksFilterForm #ChangePage").trigger('submit');
 }
