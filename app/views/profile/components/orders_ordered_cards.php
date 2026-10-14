@@ -1,4 +1,5 @@
 <?php
+
 /** 
  *@var array $orders
  */
@@ -13,13 +14,28 @@
         <th>Total Price</th>
         <th>Details</th>
         <th>created_at</th>
-        <th>Options</th>
+        <?php
+        if (isAuth('admin')) {
+          echo "<th>Options</th>";
+        }
+        ?>
       </tr>
     </thead>
     <tbody>
       <?php
       if (!empty($orders['ordered']['data'])) {
         foreach ($orders['ordered']['data'] as $order) {
+          $additionalOption = "";
+          if (isAuth('admin')) {
+            $additionalOption = "
+          <td>
+            <div class='buttons'>
+              <button class='btn btn-danger me-2'>Cancel</button>
+              <button class='btn btn-success'>Done</button>
+            </div>
+          </td>
+            ";
+          }
           echo "
       <tr>
         <th>{$order['id']}</th>
@@ -27,12 +43,7 @@
         <td>{$order['total_price']}</td>
         <td><a href='#'>Show</a></td>
         <td>{$order['created_at']}</td>
-        <td>
-          <div class='buttons'>
-            <button class='btn btn-danger me-2'>Cancel</button>
-            <button class='btn btn-success'>Done</button>
-          </div>
-        </td>
+        {$additionalOption}
       </tr>
   ";
         }
@@ -44,6 +55,6 @@
   </table>
 </div>
 
-<?php 
-preparePagination($orders['ordered'],'orders_ordered');
+<?php
+preparePagination($orders['ordered'], 'orders_ordered');
 ?>

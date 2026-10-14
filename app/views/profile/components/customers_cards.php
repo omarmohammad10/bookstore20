@@ -14,12 +14,12 @@
               "<span class='badge text-bg-danger position-absolute' style='top: 10px;right: 10px;'>Banned</span>" 
               : "";
               $isButtonBanned = ($customer['is_banned']) ? 
-              "<div class='btn btn-danger w-100'>Unban</div>" 
-              : "<div class='btn btn-danger w-100'>Ban</div>";
+              "<div class='btn btn-danger w-100' onclick='banUser({$customer['id']},`Unban`)'>Unban</div>" 
+              : "<div class='btn btn-danger w-100' onclick='banUser({$customer['id']},`Ban`)'>Ban</div>";
               echo "
   <div class='col-lg-4 mb-3'>
     <div class='item'>
-      <div class='card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis'>
+      <div class='card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis' data-user-id='{$customer['id']}'>
       {$isBadgeBanned}
         <img src='{$customerImg}'
           class='card-img-top m-auto d-block'

@@ -6,7 +6,9 @@ require_once __DIR__ . "/../app/controllers/web/auth/RegisterController.php";
 require_once __DIR__ . "/../app/controllers/web/profile/ProfileController.php";
 require_once __DIR__ . "/../app/controllers/web/user/UserController.php";
 require_once __DIR__ . "/../app/controllers/web/author/AuthorController.php";
+require_once __DIR__ . "/../app/controllers/web/admin/AdminController.php";
 require_once __DIR__ . "/../app/controllers/web/book/BookController.php";
+require_once __DIR__ . "/../app/controllers/web/cart/CartController.php";
 require_once __DIR__ . "/../app/middleware/AuthMiddleware.php";
 require_once __DIR__ . "/../app/middleware/GuestMiddleware.php";
 require_once __DIR__ . "/../app/middleware/RegisterMiddleware.php";
@@ -29,5 +31,15 @@ Route::post("/profile/editGender" , UserController::class , "editGender" , [Auth
 Route::post("/profile/editPhone" , UserController::class , "editPhone" , [AuthMiddleware::class]);
 Route::post("/profile/editPassword" , UserController::class , "editPassword" , [AuthMiddleware::class]);
 
-Route::post("/profile/addAuthor" , AuthorController::class , "addAuthor" , ["AuthMiddleware:admin"]);
 Route::post("/profile/filterBooks" , BookController::class , "filterBooks" , [AuthMiddleware::class]);
+
+/* Admin */
+
+Route::post("/profile/addAuthor" , AuthorController::class , "addAuthor" , ["AuthMiddleware:admin"]);
+Route::post("/profile/addBook" , BookController::class , "addBook" , ["AuthMiddleware:admin"]);
+Route::post("/profile/banUser" , AdminController::class , "banUser" , ["AuthMiddleware:admin"]);
+
+
+/* Customer */
+Route::post("/profile/addToCart" , CartController::class , "addToCart" , ["AuthMiddleware:customer"]);
+Route::post("/profile/getCartItems" , CartController::class , "getCartItems" , ["AuthMiddleware:customer"]);

@@ -11,6 +11,15 @@
           foreach ($books['data'] as $book) {
               $bookImg = $book['image'] == null ? asset("images/book.png") : asset("images/uploads/{$book['image']}");
               $shortDesc = substr($book['description'], 0 , 100);
+              $orderButton = "";
+              if(isAuth('customer')){
+                $orderButton = "
+              <div class='input-group'>
+                <input type='number' min='1' class='form-control' placeholder='Quantity' id='input_quantity_{$book['id']}'>
+                <button class='btn btn-outline-success' type='button' onclick='addToCart({$book['id']},this)'>Add To Cart</button>
+              </div>
+              ";
+              }
               echo "
   <div class='col-lg-4 mb-3'>
     <div class='item'>
@@ -18,7 +27,7 @@
         <img src='{$bookImg}'
           class='card-img-top m-auto d-block'
           style='width:100px'>
-        <div class='card-body'>
+        <div class='card-body pb-0'>
           <h5 class='card-title mb-3 text-center'>{$book['title']}</h5>
           <div class='row'>
             <div class='col-4'>
@@ -68,6 +77,7 @@
               </div>
             </div>
           </div>
+          {$orderButton}
         </div>
       </div>
     </div>

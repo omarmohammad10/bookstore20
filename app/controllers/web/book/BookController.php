@@ -30,4 +30,22 @@ class BookController extends Controller
 
     Response::json($sortBooks);
   }
+
+  public function addBook(){
+    // Response::json([Request::hasFile('bookImage')]);
+    // Response::json(Request::all());
+    $errors = Request::validate([
+      "bookAuthorId" => ['required',['exists','authors','id']],
+      "bookTitle" => ['required'],
+      "bookDesc" => ['required'],
+      "bookPrice" => ['required'],
+      "bookStock" => ['required'],
+    ]);
+    if(!empty($errors)){
+      Response::json($errors,"Unprocessable Entity",422);
+    }
+    $newBook = BookModel::addBook();
+
+    Response::json($newBook);
+  }
 }

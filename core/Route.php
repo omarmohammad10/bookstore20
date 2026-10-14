@@ -47,15 +47,17 @@ class Route
           $flag = true;
           continue;
         }
+        // Route true but method is false
         $flag = false;
         self::handleMiddleware($route['middlewares']);
         $obj = new $route['controller']();
         $obj->{$route['action']}(...$args);
         return;
       }
+      // Check the route and its method
     }
     if($flag){
-      Response::error(405,"405 {$route['method']} is not allowed");
+      Response::error("405 {$route['method']} is not allowed",405);
     }
     Response::error("404 Not found",404);
   }

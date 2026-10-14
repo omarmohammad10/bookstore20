@@ -30,8 +30,9 @@
               <div class='item'>
                 <p>{$shortBio}...</p>
               </div>
-            </div>
+            </div> 
           </div>
+          <button class='btn btn-success w-100 mb-3' onclick='openAddBookPopup({$author['id']},\"{$author['name']}\")'>Add New Book</button>
         </div>
       </div>
     </div>

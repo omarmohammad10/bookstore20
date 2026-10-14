@@ -13,6 +13,16 @@ class DBModel extends Model
     return $result['total'];
   }
 
+   public static function getTotalBoughtBooksOfCustomer()
+  {
+    $DB = Database::getConnection();
+    $customerId = auth('id');
+    $stmt = $DB->query("SELECT SUM(orders_items.quantity) AS total
+    FROM orders_items LEFT JOIN orders ON orders.id = orders_items.order_id
+    WHERE orders.customer_id = {$customerId} AND orders.status = 'done'");
+    return $stmt->fetchColumn() ?? 0;
+  }
+
   public static function getDataOfTable(string $tableName, array $wheres = [], int $page = 1): array
   {
     $DB = Database::getConnection();
@@ -34,4 +44,10 @@ class DBModel extends Model
     ];
   }
   
+  public static function getRoleofUser(string $userId): string
+  {
+    $DB = Database::getConnection();
+    $stmt = $DB->query("SELECT role FROM users WHERE id = {$userId}");  
+    return $stmt->fetchColumn();
+  }
 }

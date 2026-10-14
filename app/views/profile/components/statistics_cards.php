@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /** 
  * @var array $total
  */
@@ -14,33 +15,55 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-3 mb-3">
-    <div class="item">
-      <div class="card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis">
-        <i class="fa-solid fa-user-group m-auto mt-3"></i>
-        <h6 class="my-3 text-center">Total Authors</h6>
-        <p class="text-center text-success fw-bolder mb-0"><?= $total['authors'] ?></p>
+  <?php
+  if (isAuth('admin')) {
+    echo "
+  <div class='col-lg-3 mb-3'>
+    <div class='item'>
+      <div class='card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis'>
+        <i class='fa-solid fa-user-group m-auto mt-3'></i>
+        <h6 class='my-3 text-center'>Total Authors</h6>
+        <p class='text-center text-success fw-bolder mb-0'>{$total['authors']}</p>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 mb-3">
-    <div class="item">
-      <div class="card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis">
-        <i class="fa-solid fa-users m-auto mt-3"></i>
-        <h6 class="my-3 text-center">Total Customers</h6>
-        <p class="text-center text-success fw-bolder mb-0"><?= $total['customers'] ?></p>
+  <div class='col-lg-3 mb-3'>
+    <div class='item'>
+      <div class='card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis'>
+        <i class='fa-solid fa-users m-auto mt-3'></i>
+        <h6 class='my-3 text-center'>Total Customers</h6>
+        <p class='text-center text-success fw-bolder mb-0'>{$total['customers']}</p>
       </div>
     </div>
   </div>
-  <div class="col-lg-3 mb-3">
-    <div class="item">
-      <div class="card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis">
-        <i class="fa-solid fa-users-gear m-auto mt-3"></i>
-        <h6 class="my-3 text-center">Total Admins</h6>
-        <p class="text-center text-success fw-bolder mb-0"><?= $total['admins'] ?></p>
+  <div class='col-lg-3 mb-3'>
+    <div class='item'>
+      <div class='card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis'>
+        <i class='fa-solid fa-users-gear m-auto mt-3'></i>
+        <h6 class='my-3 text-center'>Total Admins</h6>
+        <p class='text-center text-success fw-bolder mb-0'>{$total['admins']}</p>
       </div>
     </div>
   </div>
+    ";
+  }
+  ?>
+
+  <?php
+  if (isAuth('customer')) {
+    echo "
+    <div class='col-lg-3 mb-3'>
+    <div class='item'>
+      <div class='card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis'>
+        <i class='fa-solid fa-user-group m-auto mt-3'></i>
+        <h6 class='my-3 text-center'>Total Bought Books</h6>
+        <p class='text-center text-success fw-bolder mb-0'>{$total['boughtBooks']}</p>
+      </div>
+    </div>
+  </div>
+    ";
+  }
+  ?>
   <div class="col-lg-3 mb-3">
     <div class="item">
       <div class="card py-2 px-3 rounded-4 bg-primary-subtle text-primary-emphasis">

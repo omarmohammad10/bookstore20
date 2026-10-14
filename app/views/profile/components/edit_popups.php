@@ -150,3 +150,72 @@
      </div>
    </div>
  </div>
+
+ <!-- Add Book -->
+<div class="modal fade" id="addBook" tabindex="-1"
+   aria-labelledby="AddBookLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="AddBookLabel">Add New Book</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal"
+           aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form id="AddBookForm">
+           <div class="form-group mb-3">
+            <input type="hidden" id="AuthorIdHidden" name="bookAuthorId" >
+             <label for="AuthorId">Author : </label>
+             <select class="form-control" id="AuthorId" disabled>
+              <option value="" selected hidden></option>
+             </select>
+             <p class="alert alert-danger d-none mt-3" data-error-name="bookAuthorId"></p>
+           </div>
+           <div class="form-group mb-3">
+             <label for="BookTitle">Title : </label>
+             <input type="text" class="form-control" id="BookTitle" name="bookTitle">
+             <p class="alert alert-danger d-none mt-3" data-error-name="bookTitle"></p>
+           </div>
+           <div class="form-group mb-3">
+             <label for="BookImage">Image : </label>
+             <input type="file" class="form-control" id="BookImage" name="bookImage">
+             <p class="alert alert-danger d-none mt-3" data-error-name="bookImage"></p>
+           </div>
+           <div class="form-group mb-3">
+             <label for="BookDesc">Description : </label>
+             <textarea class="form-control" id="BookDesc" name="bookDesc" rows="10"></textarea>
+             <p class="alert alert-danger d-none mt-3" data-error-name="bookDesc"></p>
+           </div>
+           <div class="form-group mb-3">
+             <label for="BookPrice">Price : </label>
+             <input type="text" class="form-control" id="BookPrice" name="bookPrice">
+             <p class="alert alert-danger d-none mt-3" data-error-name="bookPrice"></p>
+           </div>
+           <div class="form-group mb-3">
+             <label for="BookStock">Stock : </label>
+             <input type="text" class="form-control" id="BookStock" name="bookStock">
+             <p class="alert alert-danger d-none mt-3" data-error-name="bookStock"></p>
+           </div>
+           <button class="btn btn-success d-block mt-3 me-auto w-100">Add</button>
+         </form>
+       </div>
+     </div>
+   </div>
+</div>
+ 
+<!-- Cart -->
+<div class="modal fade" id="Cart" tabindex="-1"
+   aria-labelledby="CartLabel" aria-hidden="true">
+   <div class="modal-dialog modal-xl">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="CartLabel">Cart</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal"
+           aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         
+       </div>
+     </div>
+   </div>
+ </div>
